@@ -1,0 +1,103 @@
+:root {
+  /* base color */
+  --bg-main: #061d28;
+  --white: #f1f1f1;
+  --primary: #0fb3ff;
+
+  /* shadow */
+  --shadow-carousel: 0 8px 60px rgba(0, 187, 255, 0.218);
+
+  /* dot */
+  --dot-inactive: var(--white);
+  --dot-active: var(--primary);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--bg-main);
+  font-family: "Open Sans", sans-serif;
+}
+
+.carousel-container {
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: var(--shadow-carousel);
+}
+
+.carousel-wrapper {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+  height: auto;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.carousel-slide img {
+  width: 100%;
+  display: block;
+}
+
+button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  font-size: 2rem;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.dots {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+  background-color: var(--dot-inactive);
+  border-radius: 50%;
+  cursor: pointer;
+  transform: background 0.3s;
+}
+
+.dot.active {
+  background-color: var(--dot-active);
+}
+
+@media (max-width: 480px) {
+  button {
+    font-size: 0.5rem;
+    padding: 5px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    margin: 0 3px;
+  }
+}
