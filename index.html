@@ -2,11 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- Meta viewport untuk responsive design: memastikan tampilan optimal di berbagai ukuran layar -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Carousel</title>
     <!-- CSS -->
     <link rel="stylesheet" href="./style.css" />
-    <!-- JQuery -->
+    <!-- jQuery: digunakan untuk DOM manipulation dan event handling -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Font Awesome Icon -->
     <link
@@ -15,25 +16,56 @@
     />
   </head>
   <body>
+    <!-- 
+    Container Utama Carousel
+    - Berfungsi sebagai pembungkus seluruh komponen carousel
+    - Position relative untuk positioning absolut button dan dots
+    -->
     <div class="carousel-container">
+      <!-- 
+      Wrapper untuk Slides 
+      - Menggunakan flexbox untuk menyusun slides secara horizontal
+      - Transform translateX digunakan untuk menggeser posisi slides
+      - Element ini yang akan bergeak saat navigasi carousel
+      -->
       <div class="carousel-wrapper">
+        <!-- 
+        Slide 1
+        - Setiap slide memiliki class 'carousel-slide'
+        - Min-width 100% memastikan setiap slide mengambil full width container
+        - Gambar menggunakan picsum.photo untuk random placeholder images
+        -->
         <div class="carousel-slide">
           <img src="https://picsum.photos/600/300?random=1" alt="Slide-1" />
         </div>
+
+        <!-- Slide 2 -->
         <div class="carousel-slide">
           <img src="https://picsum.photos/600/300?random=2" alt="Slide-2" />
         </div>
+
+        <!-- Slide 3 -->
         <div class="carousel-slide">
           <img src="https://picsum.photos/600/300?random=3" alt="Slide-3" />
         </div>
+
+        <!-- Slide 4 -->
         <div class="carousel-slide">
           <img src="https://picsum.photos/600/300?random=4" alt="Slide-4" />
         </div>
+
+        <!-- Slide 5 -->
         <div class="carousel-slide">
           <img src="https://picsum.photos/600/300?random=5" alt="Slide-5" />
         </div>
       </div>
 
+      <!-- 
+      Button Navigation Previous
+      - Class 'prev untuk styling dan event handler'
+      - Menggunakan inline SVG untuk icon chevron-left
+      - Position absolute untuk ditempatkan di sisi kiri carousel
+      -->
       <button class="prev">
         <svg
           width="24"
@@ -45,10 +77,17 @@
           stroke-linecap="round"
           stroke-linejoin="round"
         >
+          <!-- Path untuk icon chevron poiting left -->
           <path d="M15 18l-6-6 6-6"></path>
         </svg>
       </button>
 
+      <!--
+      Button Navigation next
+      - Class 'next' untuk styling dan event handler
+      - Menggunakan inline SVG untuk icon chevron-right
+      - Position absolute untuk ditempatkan di sisi kanan carousel
+      -->
       <button class="next">
         <svg
           width="24"
@@ -60,18 +99,33 @@
           stroke-linecap="round"
           stroke-linejoin="round"
         >
+          <!-- Path untuk icon chevron pointing right -->
           <path d="M9 6l6 6-6 6"></path>
         </svg>
       </button>
 
+      <!--
+      Dots Indicator
+      - Container untuk navigation dots di bagian bawah carousel
+      - Setiap dot merepresentasikan satu slide
+      - Dot yang aktif akan memiliki class 'active'
+      - Data-index digunakan untuk mapping ke index slide
+      -->
       <div class="dots">
+        <!-- Dot untuk Slide 1 - default active -->
         <span class="dot active" data-index="0"></span>
+        <!-- Dot untuk Slide 2 -->
         <span class="dot" data-index="1"></span>
+        <!-- Dot untuk Slide 3 -->
         <span class="dot" data-index="2"></span>
+        <!-- Dot untuk Slide 4 -->
         <span class="dot" data-index="3"></span>
+        <!-- Dot untuk Slide 5 -->
         <span class="dot" data-index="4"></span>
       </div>
     </div>
+
+    <!-- JS -->
     <script src="./script.js"></script>
   </body>
 </html>

@@ -1,147 +1,321 @@
+/**
+ * CSS VARIABLES (Custom Properties)
+ * Menggunakan CSS Variables untuk centralized color management
+ * dan memudahkan maintenance serta theming
+ */
 :root {
-  /* base color */
+  /* === Base Colors === */
+  /* Warna background utama - dark navy blue untuk kontras */
   --bg-main: #1a1a2e;
+
+  /* Warna putih untuk text dan elemen terang */
   --white: #f1f1f1;
+
+  /* Warna aksen primary - cyan untuk highlight */
   --primary: #00d4ff;
+
+  /* Background tombol navigasi - semi-transparent white */
   --button-bg: rgba(255, 255, 255, 0.9);
+
+  /* Background tombol saat hover - fully opaque white */
   --button-hover: #ffffff;
 
-  /* shadow */
+  /* === Shadow === */
+  /* Shadow untuk carousel container - memberikan depth */
   --shadow-carousel: 0 10px 40px rgba(0, 0, 0, 0.3);
 
-  /* dot */
+  /* === DOT COLORS === */
+  /* Warna dot yang tidak aktif - semi-transparent */
   --dot-inactive: rgba(255, 255, 255, 0.5);
+
+  /* Warna dot yang aktif - fully opaque white */
   --dot-active: var(--white);
 }
 
+/**
+ * Global Reset:
+ * Reset default browser styling untuk consistency across browsers
+ */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0; /* Hilangkan default margin */
+  padding: 0; /* Hilangkan default padding */
+  box-sizing: border-box; /* Include padding dan border dalam width calculation */
 }
 
+/**
+ * Body Styling:
+ * Setup layout utama halaman
+ */
 body {
+  /* Flexbox untuk centering carousel secara horizontal dan vertikal */
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* Center horizontal */
+  align-items: center; /* Center vertical */
+
+  /* Min-height 100vh memastikan body minimal setinggi viewport */
   min-height: 100vh;
+
+  /* Background color dari CSS variable */
   background-color: var(--bg-main);
+
+  /* Font stack modern - fallback ke system fonts */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Padding untuk spacing di mobile devices */
   padding: 20px;
 }
 
+/**
+ * Carousel Container:
+ * Container utama yang membungkus semua elemen carousel
+ */
 .carousel-container {
+  /* Position relative untuk absolute positioning children (buttons & dots) */
   position: relative;
+
+  /* Full width dengan max-width untuk responsive */
   width: 100%;
   max-width: 650px;
+
+  /* Rounded corners untuk aesthetic */
   border-radius: 16px;
+
+  /* Overflow hidden untuk memotong slides yang keluar container */
   overflow: hidden;
+
+  /* Box shadow untuk depth effect */
   box-shadow: var(--shadow-carousel);
 }
 
+/**
+ * Carousel Wrapper:
+ * Element yang bergerak untuk sliding effect
+ */
 .carousel-wrapper {
+  /* Flexbox untuk menyusun slides horizontal */
   display: flex;
+
+  /* Smooth transition untuk sliding animation */
+  /* Duration 0.5s dan ease timing function untuk natural movement */
   transition: transform 0.5s ease;
 }
 
+/**
+ * Individual Slide:
+ * Styling untuk setiap slide dalam carousel
+ */
 .carousel-slide {
+  /* Min-width 100% memastikan setiap slide mengambil full width container */
+  /* Hal ini penting untuk sliding mechanism - setiap slide tidak boleh shrink */
   min-width: 100%;
 }
 
+/**
+ * Slide Image:
+ * Styling untuk gambar dalam slide
+ */
 .carousel-slide img {
+  /* Full width untuk mengisi container */
   width: 100%;
+
+  /* Fixed height untuk consistency */
   height: 400px;
+
+  /* Object-fit cover untuk maintain aspect ratio tanpa distorsi */
   object-fit: cover;
+
+  /* Display block untuk menghilangkan gap di bawah image */
   display: block;
 }
 
+/**
+ * Navigation Button (Shared Styles):
+ * Base styling untuk tombol prev dan next
+ */
 button {
+  /* Position absolute untuk overlay pada carousel */
   position: absolute;
+
+  /* Centering vertical - top 50% dikombinasikan dengan translateY */
   top: 50%;
   transform: translateY(-50%);
+
+  /* Background semi-transparent dari CSS variable */
   background-color: var(--button-bg);
+
+  /* Text/icon color */
   color: var(--primary);
+
+  /* Remove default button border */
   border: none;
+
+  /* Ukuran button - circular shape */
   width: 45px;
   height: 45px;
+
+  /* Cursor pointer untuk UX - indicate clickable */
   cursor: pointer;
+
+  /* Border-radius 50% untuk perfect circle */
   border-radius: 50%;
+
+  /* Flexbox untuk centering icon di dalam button */
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* Smooth transition untuk hover effects */
   transition: all 0.3s ease;
+
+  /* Default hidden - hanya muncul saat hover container */
   opacity: 0;
 }
 
+/**
+ * Button Hover Effetct (Container Hover):
+ * Show buttons saat user hover pada carousel container
+ */
 .carousel-container:hover button {
+  /* Fade in buttons saat hover */
   opacity: 1;
 }
 
+/**
+ * Button Hover Effect (Direct Hover):
+ * Additional effect saat hover langsung pada button
+ */
 button:hover {
+  /* Change background ke fully opaque */
   background-color: var(--button-hover);
+
+  /* Scale up untuk feedback visual */
+  /* Maintain translateY untuk keep vertical centering */
   transform: translateY(-50%) scale(1.1);
 }
 
+/**
+ * Button Active State:
+ * Effect saat button diklik (pressed state)
+ */
 button:active {
+  /* Scale down untuk pressed feedback */
   transform: translateY(-50%) scale(0.95);
 }
 
+/**
+ * Button Positioning:
+ * Specific positioning untuk prev dan next button
+ */
+
+/* Previous button - posisi di kiri */
 .prev {
   left: 15px;
 }
+
+/* Next button - posisi di kanan */
 .next {
   right: 15px;
 }
 
+/**
+ * Dots Container:
+ * Container untuk navigation indicator dots
+ */
 .dots {
+  /* Position absolute untuk overlay di bottom carousel */
   position: absolute;
   bottom: 20px;
+
+  /* Centering horizontal menggunakan left 50% + translateX */
   left: 50%;
   transform: translateX(-50%);
+
+  /* Flexbox untuk menyusun dots horizontal */
   display: flex;
+
+  /* Gap antar dots */
   gap: 10px;
 }
 
+/**
+ * Individual Dot:
+ * Styling untuk setiap dot indicator
+ */
 .dot {
+  /* Ukuran default dot - small circle */
   width: 10px;
   height: 10px;
+
+  /* Background semi-transparent untuk inactive state */
   background-color: var(--dot-inactive);
+
+  /* Border-radius 50% untuk perfect circle */
   border-radius: 50%;
+
+  /* Cursor pointer - indicate clickable */
   cursor: pointer;
+
+  /* Smooth transition untuk morphing effect */
   transition: all 0.3s ease;
 }
 
+/**
+ * Active Dot:
+ * Styling untuk dot yang merepresentasikan slide aktif
+ */
 .dot.active {
+  /* Background fully opaque untuk highlight */
   background-color: var(--dot-active);
+
+  /* Width lebih lebar - morphing dari circle ke pill shape */
   width: 30px;
+
+  /* Border-radius lebih kecil untuk pill shape */
   border-radius: 5px;
 }
 
+/**
+ * Responsive Tablet:
+ * Adjustments untuk layar tablet (≤768px)
+ */
 @media (max-width: 768px) {
+  /* Reduce image height untuk mobile viewport */
   .carousel-slide img {
     height: 300px;
   }
 
+  /* Slightly smaller buttons */
   button {
     width: 38px;
     height: 38px;
+
+    /* Always show buttons di mobile - tidak perlu hover */
+    /* Karena mobile tidak memiliki hover state */
     opacity: 1;
   }
 }
 
+/**
+ * Responsive Mobile:
+ * Adjustments untuk layar mobile kecil (≤480px)
+ */
 @media (max-width: 480px) {
+  /* Further reduce image height untuk small mobile */
   .carousel-slide img {
     height: 250px;
   }
 
+  /* Even smaller buttons untuk avoid obstruction */
   button {
     width: 35px;
     height: 35px;
   }
 
+  /* Reduce button spacing dari edge untuk more room */
   .prev {
     left: 10px;
   }
+
   .next {
     right: 10px;
   }
